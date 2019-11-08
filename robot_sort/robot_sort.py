@@ -93,11 +93,75 @@ class SortingRobot:
         return self._light == "ON"
 
     def sort(self):
+        self.set_light_on()
+        while self.light_is_on():
+            self.set_light_off()
+            # pos === 0
+            # whle we can move right, compare numbers.
+            while self.can_move_right():
+                
+                if self.compare_item() == -1:
+                    self.set_light_on()
+                    self.swap_item()
+                    self.move_right()
+                    
+                elif self.compare_item() == 1:
+                    self.move_right()
+
+                else:
+                    self.set_light_on()
+                    self.swap_item()
+                    self.move_right()
+            if not self.can_move_right():
+                if self.compare_item() == None:
+                    self.swap_item()
+                while self.can_move_left():
+                    self.move_left()     
+        
+        return self
+        # self.set_light_on()
+        # while self.light_is_on():
+        #     self.set_light_off()
+        #     print(self.light_is_on())
+
         """
+        def bubble_sort(arr):
+    for passnum in range(len(arr)-1,0,-1):
+        for i in range(passnum):
+            if arr[i]>arr[i+1]:
+                temp = arr[i]
+                arr[i]=arr[i+1]
+                arr[i+1] = temp
+
+alist = [54,26,93,17,77,31,44,55,20]
+bubble_sort(alist)
+print(alist)
+====================================
+        def selection_sort(arr):
+    for i in range(len(arr)):
+        min = i
+        for j in range(i+1,len(arr)):
+            if arr[min] > arr[j]:
+                min = j
+        
+        arr[i], arr[min] = arr[min], arr[i]
+        ////////////////////////////////////////////////
+        def while_bubble_sort( arr ):
+    lastUnsorted = len(arr) -1
+    isSorted = False
+    while not isSorted:
+        isSorted = True
+        for i in range(lastUnsorted):
+            if arr[i]> arr[i+1]:
+                arr[i+1],arr[i] = arr[i],arr[i+1]
+                isSorted = False
+            
+    lastUnsorted -= 1
+        light on and off is while loop stop and start
+
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+       
 
 
 if __name__ == "__main__":
